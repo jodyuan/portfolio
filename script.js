@@ -203,7 +203,6 @@ function changeSlide(direction) {
         // Swap image while invisible
         updateGalleryImage();
 
-        // Move to the "entry side" instantly
         fullImg.style.transition = 'none';
         fullImg.classList.remove('slide-out-left', 'slide-out-right');
         
