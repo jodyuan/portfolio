@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jodienne | Web & UI Design Portfolio</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&family=Quicksand:wght@400;600&display=swap"
+            rel="stylesheet">
+        <script src="https://unpkg.com/scrollreveal"></script>
+    </head>
+    <body>
+
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-img">
+                <span style="color: white; font-size: 6rem;">☘︎</span>
+            </div>
+            <h1>Hi, I'm Jodienne</h1>
+            <p
+                style="font-size: 1.3rem; letter-spacing: 2px; text-transform: uppercase;">Aspiring
+                Web / UI Intern</p>
+        </section>
+
+        <section id="about" class="reveal">
+            <h2 class="section-title">About Me</h2>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <p
+                    style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
+                    I am an aspiring <b>Web/UI Intern</b> focused on building
+                    clean, user-friendly layouts.
+                    I enjoy translating complex needs into functional designs
+                    using <b>Figma, HTML,</b> and <b>CSS</b>.
+                    My goal is to contribute to meaningful website projects
+                    while growing my skills in front-end workflows.
+                </p>
+
+                <div
+                    style="background: var(--soft-pink); padding: 25px; border-radius: 30px; border: 1.5px dashed var(--main-pink);">
+                    <h3 class="handwritten"
+                        style="font-size: 2rem; margin-top: 0; color: var(--accent-pink);">Education
+                    </h3>
+                    <p
+                        style="font-weight: 600; margin: 5px 0; font-size: 1.1rem;">Mapúa
+                        Malayan Digital College</p>
+                    <p style="margin: 5px 0; color: var(--deep-brown);">BS in
+                        Information Technology</p>
+                    <p
+                        style="font-size: 0.9rem; font-style: italic; color: var(--accent-pink);">Software
+                        Development Track • 2023 - 2026</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="reveal">
+            <h2 class="section-title">Project Contribs</h2>
+
+            <div class="scroll-container">
+
+                <div class="hover-zone left" onmouseenter="startScroll(-7)"
+                    onmouseleave="stopScroll()"
+                    onclick="clickScroll(-450)">
+                    <span class="arrow">‹</span>
+                </div>
+                <div class="hover-zone right" onmouseenter="startScroll(7)"
+                    onmouseleave="stopScroll()"
+                    onclick="clickScroll(450)">
+                    <span class="arrow">›</span>
+                </div>
+
+                <div class="project-grid" id="projectGrid">
+
+                    <div class="card">
+                        <div class="image-box"
+                            onclick="openModal('assets/mentease-login.png')">
+                            <img src="assets/mentease-login.png"
+                                alt="MentEase UI Preview" class="project-img" />
+                        </div>
+                        <h3>MentEase</h3>
+                        <p style="font-size: 0.9rem; color: var(--mocha);">
+                            Designed <b>student-side page flows</b> and
+                            <b>booking modules</b>.
+                        </p>
+                        <div
+                            style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="javascript:void(0)"
+                                onclick="openModal('assets/mentease-features.mp4')"
+                                style="font-size: 0.8rem; color: var(--base-white); background: var(--accent-pink); text-decoration: none; font-weight: bold; padding: 5px 12px; border-radius: 10px;">
+                                ▶ Watch Preview
+                            </a>
+
+                            <a
+                                href="https://www.canva.com/design/DAGsTFYv8qY/uwSCzqyzoXjXipOmSkl3aw/view?utm_content=DAGsTFYv8qY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h10ce242401"
+                                target="_blank"
+                                style="font-size: 0.8rem; color: var(--accent-pink); border: 1.5px solid var(--accent-pink); text-decoration: none; font-weight: bold; padding: 5px 12px; border-radius: 10px;">
+                                View Wireframe
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="image-box"
+                            onclick="openModal('assets/brainbytes_preview.png')">
+                            <img src="assets/brainbytes_preview.png"
+                                alt="BrainBytes AI Demo preview"
+                                class="project-img" />
+                        </div>
+                        <h3>BrainBytes AI</h3>
+                        <p style="font-size: 0.9rem; color: var(--mocha);">
+                            Contributed to the <b>login authentication flow</b>
+                            and <b>chat refinements</b>.
+                        </p>
+                        <div style="margin-top: 15px;">
+                            <a href="javascript:void(0)"
+                                onclick="openModal('assets/brainbytesAI_features_demo.mp4')"
+                                style="font-size: 0.8rem; color: var(--base-white); background: var(--accent-pink); text-decoration: none; font-weight: bold; padding: 5px 12px; border-radius: 10px;">
+                                ▶ Watch Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="image-box"
+                            onclick="openModal('assets/closets-ui.png')">
+                            <img src="assets/closets-ui.png"
+                                alt="Closets Mobile Layout"
+                                class="project-img" />
+                        </div>
+                        <h3>Closets</h3>
+                        <p style="font-size: 0.9rem; color: var(--mocha);">
+                            My favorite design project! I went for a <b>pink and
+                                cute aesthetic</b> for this wardrobe manager.
+                        </p>
+                        <div style="margin-top: 15px;">
+                            <a href="javascript:void(0)"
+                                onclick="openFigma('https://embed.figma.com/design/9LrQITHU6gyhiPGRWtfgbf/OOSAD---Closets-Prototype?node-id=0-1&embed-host=share')"
+                                style="font-size: 0.8rem; color: white; background: #FF85A1; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 12px; display: inline-block;">
+                                View Figma Design
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="image-box"
+                            onclick="openModal('assets/yci_ui.png')">
+                            <img src="assets/yci_ui.png"
+                                alt="Your Cooking Ina Layout"
+                                class="project-img" />
+                        </div>
+                        <h3>Your Cooking Ina</h3>
+                        <p style="font-size: 0.9rem; color: var(--mocha);">
+                            A design for a recipe platform featuring a
+                            <b>"Surprise Me!" randomizer</b> and a
+                            <b>messenger-style</b> landing page.
+                        </p>
+                        <div style="margin-top: 15px;">
+                            <a href="javascript:void(0)"
+                                onclick="openFigma('https://embed.figma.com/design/6nFtbE0uaphuxemCXvBLMe/Your-Cooking-Ina-Wireframe-Draft?node-id=13-2&embed-host=share')"
+                                style="font-size: 0.8rem; color: white; background: #FF85A1; text-decoration: none; font-weight: bold; padding: 8px 15px; border-radius: 12px; display: inline-block;">
+                                View Figma Design
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="image-box"
+                            onclick="openGallery(['assets/diagrams/mentease-usecase.png', 'assets/diagrams/mentease-flow-feedback.png', 'assets/diagrams/mentease-sad.png'])">
+                            <img src="assets/diagrams/mentease-usecase.png"
+                                alt="System Documentation"
+                                class="project-img" />
+                        </div>
+                        <h3>System Documentation</h3>
+                        <p style="font-size: 0.9rem; color: var(--mocha);">
+                            Visualizing system logic through <b>Use Case</b>,
+                            <b>User Flow</b>, and <b>Architecture</b> mapping.
+                        </p>
+                        <div style="margin-top: 15px;">
+                            <span
+                                style="font-size: 0.75rem; color: var(--accent-pink); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                                Zoom in to view gallery
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="reveal">
+            <h2 class="section-title">Skills</h2>
+            <div class="skill-list">
+                <div class="skill">Figma</div>
+                <div class="skill">HTML & CSS</div>
+                <div class="skill">Responsive Design</div>
+                <div class="skill">UI Layout</div>
+                <div class="skill">GitHub</div>
+                <div class="skill">Collaboration</div>
+            </div>
+        </section>
+
+        <footer>
+            <p style="margin-bottom: 5px;">Want to work together?</p>
+            <a href="mailto:lr.jesperas@mmdc.mcl.edu.ph"
+                style="color: var(--accent-pink); text-decoration: none; font-weight: 600; border-bottom: 2px dashed var(--main-pink);">
+                lr.jesperas@mmdc.mcl.edu.ph
+            </a>
+        </footer>
+
+        <div id="imageModal" class="modal">
+            <div class="modal-overlay" onclick="closeModal()"></div>
+
+            <button id="prevBtn" class="nav-btn"
+                onclick="event.stopPropagation(); changeSlide(-1)">‹</button>
+
+            <img class="modal-content" id="fullImg"
+                onclick="event.stopPropagation()">
+
+            <iframe id="figmaEmbed" class="modal-content"
+                style="display:none; width: 85%; height: 85%; border: none;"
+                allowfullscreen></iframe>
+
+            <video class="modal-content" id="fullVideo" controls
+                onclick="event.stopPropagation()">
+                <source id="videoSource" src type="video/mp4">
+            </video>
+
+            <button id="nextBtn" class="nav-btn"
+                onclick="event.stopPropagation(); changeSlide(1)">›</button>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
