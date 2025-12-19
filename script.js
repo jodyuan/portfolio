@@ -57,12 +57,12 @@ function closeModal() {
     document.getElementById('nextBtn').style.display = 'none';
 
     // 1. Instantly hide the content so the browser doesn't have to render it during animation
-    if (figmaEmbed) figmaEmbed.style.display = "none"; 
+    if (figmaEmbed) figmaEmbed.style.display = "none";
     if (fullImg) fullImg.style.display = "none";
     if (fullVideo) fullVideo.style.display = "none";
 
     // 2. Start the scale-out animation for the modal container
-    modal.classList.remove("open"); 
+    modal.classList.remove("open");
 
     if (fullVideo) {
         fullVideo.pause();
@@ -71,11 +71,11 @@ function closeModal() {
     // 3. Wait for the animation to finish (400ms) then do the heavy cleanup
     setTimeout(() => {
         modal.style.display = "none";
-        
+
         // Clear sources so the browser releases the memory
-        if (videoSource) videoSource.src = ""; 
+        if (videoSource) videoSource.src = "";
         if (fullVideo) fullVideo.load();
-        if (figmaEmbed) figmaEmbed.src = ""; 
+        if (figmaEmbed) figmaEmbed.src = "";
         document.getElementById('prevBtn').style.display = 'none';
         document.getElementById('nextBtn').style.display = 'none';
     }, 400);
@@ -97,7 +97,7 @@ function openFigma(url) {
     // RESET EVERYTHING: Hide all three types first
     fullImg.style.display = "none";
     fullVideo.style.display = "none";
-    
+
     // Show only Figma
     figmaEmbed.style.display = "block";
     figmaEmbed.src = url;
@@ -126,8 +126,8 @@ function stopScroll() {
 // 2. NEW: Quick Click Scroll Logic
 function clickScroll(amount) {
     // Stops the hover scroll so they don't fight each other
-    stopScroll(); 
-    
+    stopScroll();
+
     grid.scrollBy({
         left: amount,
         behavior: 'smooth'
@@ -141,13 +141,13 @@ function openGallery(images) {
 
     currentGallery = images;
     currentIndex = 0;
-    
+
     // Show navigation buttons
     document.getElementById('prevBtn').style.display = 'flex';
     document.getElementById('nextBtn').style.display = 'flex';
-    
+
     updateGalleryImage();
-    
+
     // Open the modal (reuse your existing open logic)
     const modal = document.getElementById('imageModal');
     modal.style.display = 'flex';
@@ -155,7 +155,7 @@ function openGallery(images) {
 }
 
 function toggleZoom(event) {
-    if (!isMobile()) return; 
+    if (!isMobile()) return;
     event.stopPropagation();
     const img = document.getElementById('fullImg');
     img.classList.toggle('zoomed');
@@ -175,11 +175,11 @@ document.getElementById('imageModal').addEventListener('touchend', e => {
 
 function changeSlide(direction) {
     currentIndex += direction;
-    
+
     // Loop back to start/end
     if (currentIndex >= currentGallery.length) currentIndex = 0;
     if (currentIndex < 0) currentIndex = currentGallery.length - 1;
-    
+
     updateGalleryImage();
 }
 
@@ -192,33 +192,39 @@ function updateGalleryImage() {
 
     counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
     counter.style.display = currentGallery.length > 1 ? 'block' : 'none';
-    
+
     // Hide other modal types (video/figma)
     document.getElementById('fullVideo').style.display = 'none';
     document.getElementById('figmaEmbed').style.display = 'none';
 }
 
 // Keyboard Navigation for Gallery and Modal
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     const modal = document.getElementById("imageModal");
-    
+
     // Only run if the modal is actually open
     if (modal.style.display === "flex") {
-        
+
         if (event.key === "ArrowRight") {
             // Only slide if navigation buttons are currently visible
             if (document.getElementById('nextBtn').style.display === 'flex') {
                 changeSlide(1);
             }
-        } 
+        }
         else if (event.key === "ArrowLeft") {
             if (document.getElementById('prevBtn').style.display === 'flex') {
                 changeSlide(-1);
             }
-        } 
+        }
         else if (event.key === "Escape") {
             closeModal();
         }
     }
 });
 
+document.getElementById('modalOverlay').addEventListener('click', function() {
+    if (!isMobile()) {
+        // Only allow background-to-close on Desktop
+        closeModal();
+    }
+});
