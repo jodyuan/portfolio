@@ -138,11 +138,6 @@ let currentGallery = [];
 let currentIndex = 0;
 
 function openGallery(images) {
-    if (isMobile()) {
-        // Open the first image in a new tab
-        window.open(images[0], '_blank');
-        return;
-    }
 
     currentGallery = images;
     currentIndex = 0;
