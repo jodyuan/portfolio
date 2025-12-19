@@ -1,4 +1,3 @@
-// ScrollReveal Animation Logic
 ScrollReveal().reveal('.reveal', {
     delay: 200,
     distance: '50px',
@@ -68,7 +67,6 @@ function closeModal() {
     if (figmaEmbed) figmaEmbed.style.display = "none";
     if (fullImg) {
         fullImg.style.display = "none";
-        fullImg.classList.remove('zoomed'); // Reset zoom
     }
     if (fullVideo) {
         fullVideo.style.display = "none";
@@ -159,67 +157,10 @@ function openGallery(images) {
     setTimeout(() => modal.classList.add('open'), 10);
 }
 
-let isZoomed = false;
-let lastTap = 0;
-let startX, startY, scrollLeft, scrollTop;
-
-document.getElementById('fullImg').addEventListener('touchend', function(e) {
-    let currentTime = new Date().getTime();
-    let tapLength = currentTime - lastTap;
-    
-    if (tapLength < 300 && tapLength > 0) {
-        toggleZoom(e);
-        e.preventDefault();
-    }
-    lastTap = currentTime;
-});
 
 const modal = document.getElementById('imageModal');
 const img = document.getElementById('fullImg');
 
-img.addEventListener('touchstart', (e) => {
-    if (!isZoomed) return;
-    startX = e.touches[0].pageX - modal.offsetLeft;
-    startY = e.touches[0].pageY - modal.offsetTop;
-    scrollLeft = modal.scrollLeft;
-    scrollTop = modal.scrollTop;
-});
-
-img.addEventListener('touchmove', (e) => {
-    if (!isZoomed) return;
-    e.preventDefault(); // Stop page from bouncing
-    const x = e.touches[0].pageX - modal.offsetLeft;
-    const y = e.touches[0].pageY - modal.offsetTop;
-    const walkX = (x - startX) * 2; 
-    const walkY = (y - startY) * 2;
-    modal.scrollLeft = scrollLeft - walkX;
-    modal.scrollTop = scrollTop - walkY;
-});
-
-function toggleZoom(event) {
-    if (!isMobile()) return;
-    event.stopPropagation();
-    
-    isZoomed = !isZoomed;
-    img.classList.toggle('zoomed');
-
-    if (!isZoomed) {
-        // Reset scroll position when zooming out
-        modal.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    }
-}
-
-let touchStartX = 0;
-
-document.getElementById('imageModal').addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-document.getElementById('imageModal').addEventListener('touchend', e => {
-    let touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 50) changeSlide(1);  // Swipe Left -> Next
-    if (touchStartX - touchEndX < -50) changeSlide(-1); // Swipe Right -> Prev
-});
 
 function changeSlide(direction) {
     currentIndex += direction;
@@ -236,7 +177,6 @@ function updateGalleryImage() {
     const counter = document.getElementById('galleryCounter');
     fullImg.src = currentGallery[currentIndex];
     fullImg.style.display = 'block';
-    fullImg.classList.remove('zoomed');
 
     counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
     counter.style.display = currentGallery.length > 1 ? 'block' : 'none';
@@ -253,8 +193,6 @@ document.addEventListener('keydown', function (event) {
     // Only run if the modal is actually open
     if (modal.style.display === "flex") {
 
-        // 1. THIS IS THE FIX:
-        // It stops the Left/Right arrows from moving the Project Grid cards
         if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
             event.preventDefault(); 
         }
