@@ -70,7 +70,6 @@
    height: 180px;
    background: var(--main-pink);
    border-radius: 40% 60% 70% 30% / 40% 50% 60% 70%;
-   /* Organic cute shape */
    animation: morph 6s ease-in-out infinite;
    display: flex;
    align-items: center;
@@ -357,12 +356,13 @@
  }
 
  .image-box:hover img {
-    filter: brightness(0.8); /* Dims the project image to make the text readable */
-}
+   filter: brightness(0.8);
+   /* Dims the project image to make the text readable */
+ }
 
-.image-box img {
-    transition: transform 0.5s ease, filter 0.5s ease;
-}
+ .image-box img {
+   transition: transform 0.5s ease, filter 0.5s ease;
+ }
 
  .modal-overlay {
    position: absolute;
@@ -376,29 +376,29 @@
  }
 
  .modal::before {
-    content: "Press ESC or Click outside to close";
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    color: white;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.9rem;
-    background: var(--accent-pink);
-    padding: 8px 15px;
-    border-radius: 50px;
-    opacity: 0;
-    transition: 0.3s ease;
-    pointer-events: none;
-    z-index: 3001;
-}
+   content: "Press ESC or Click outside to close";
+   position: absolute;
+   top: 30px;
+   right: 30px;
+   color: white;
+   font-family: 'Quicksand', sans-serif;
+   font-size: 0.9rem;
+   background: var(--accent-pink);
+   padding: 8px 15px;
+   border-radius: 50px;
+   opacity: 0;
+   transition: 0.3s ease;
+   pointer-events: none;
+   z-index: 3001;
+ }
 
-.modal.open::before {
-    opacity: 1;
-}
+ .modal.open::before {
+   opacity: 1;
+ }
 
-.modal-content {
-    cursor: default;
-}
+ .modal-content {
+   cursor: default;
+ }
 
  .modal-close-overlay {
    position: absolute;
@@ -452,15 +452,15 @@
  }
 
  @media (max-width: 600px) {
-  .scroll-container {
-    padding: 0; 
-    overflow: hidden;
-  }
+   .scroll-container {
+     padding: 0;
+     overflow: hidden;
+   }
 
-  .scroll-container::before,
-  .scroll-container::after {
-    display: none;
-  }
+   .scroll-container::before,
+   .scroll-container::after {
+     display: none;
+   }
 
    .hero h1 {
      font-size: 3rem;
@@ -472,24 +472,25 @@
    }
 
    .project-grid {
-    display: block;
-    overflow-x: hidden; /* Force horizontal scroll to stop */
-    padding: 0; 
-    width: 100%;
-  }
+     display: block;
+     overflow-x: hidden;
+     /* Force horizontal scroll to stop */
+     padding: 0;
+     width: 100%;
+   }
 
-  .project-grid .card {
-    width: 100%; 
-    margin: 0 0 30px 0; 
-    border-radius: 0;
-    box-shadow: none;
-    border-color: var(--main-pink);
-    border-width: 1px;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    flex: none;
-  }
+   .project-grid .card {
+     width: 100%;
+     margin: 0 0 30px 0;
+     border-radius: 0;
+     box-shadow: none;
+     border-color: var(--main-pink);
+     border-width: 1px;
+     border-left: none;
+     border-right: none;
+     border-bottom: none;
+     flex: none;
+   }
 
    .card {
      box-shadow: none;
@@ -511,68 +512,80 @@
    }
 
    #prevBtn {
-     left: 0%;
+     left: 0;
+     border-radius: 0 50px 50px 0;
+     justify-content: flex-end;
+     padding-right: 10px;
+     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
    }
 
    #nextBtn {
-     right: 0%;
+     right: 0;
+     border-radius: 50px 0 0 50px;
+     justify-content: flex-start;
+     padding-left: 10px;
+     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
    }
 
    .image-box {
-    pointer-events: none;
-    border-radius: 0;
-    margin-left: -20px;    
-    margin-right: -20px;
-    width: calc(100% + 40px);
-  }
+     pointer-events: none;
+     border-radius: 0;
+     margin-left: -20px;
+     margin-right: -20px;
+     width: calc(100% + 40px);
+   }
 
    .image-box::after {
-      display: none;
+     display: none;
    }
 
    .image-box:hover img {
-        filter: none !important;
-        transform: none !important;
-    }
+     filter: none !important;
+     transform: none !important;
+   }
 
    .modal::before {
-      content: none;
+     content: none;
+   }
+
+   .modal.open {
+    background-color: #402a3aae;
    }
 
    #galleryCounter {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--accent-pink);
-        color: white;
-        padding: 5px 15px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        z-index: 3005;
-    }
+     position: absolute;
+     bottom: 20px;
+     left: 50%;
+     transform: translateX(-50%);
+     background: var(--accent-pink);
+     color: white;
+     padding: 5px 15px;
+     border-radius: 20px;
+     font-size: 0.9rem;
+     z-index: 3005;
+   }
 
-    .modal-content.zoomable {
-        transition: transform 0.3s ease;
-        touch-action: manipulation;
-    }
+   .modal-content.zoomable {
+     transition: transform 0.3s ease;
+     touch-action: manipulation;
+   }
 
-    .modal-content.zoomed {
-        transform: scale(1.8) !important;
-    }
+   .modal-content.zoomed {
+     transform: scale(1.8) !important;
+   }
 
-    .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        display: block;
-        background: white;
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        color: var(--accent-pink);
-        font-size: 1.5rem;
-        z-index: 3010;
-    }
+   .close-btn {
+     position: absolute;
+     top: 20px;
+     right: 20px;
+     display: block;
+     background: white;
+     border: none;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     color: var(--accent-pink);
+     font-size: 1.5rem;
+     z-index: 3010;
+   }
  }
