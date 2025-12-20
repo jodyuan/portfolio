@@ -214,15 +214,15 @@ function changeSlide(direction) {
     const outClass = direction > 0 ? 'slide-out-left' : 'slide-out-right';
     fullImg.classList.add(outClass);
 
-    // Wait for slide-out to finish
     setTimeout(() => {
         currentIndex += direction;
-
         if (currentIndex >= currentGallery.length) currentIndex = 0;
         if (currentIndex < 0) currentIndex = currentGallery.length - 1;
 
-        // Swap image while invisible
-        updateGalleryImage();
+        const counter = document.getElementById('galleryCounter');
+        counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
+        document.getElementById('fullVideo').style.display = 'none';
+        document.getElementById('figmaEmbed').style.display = 'none';
 
         fullImg.style.transition = 'none';
         fullImg.classList.remove('slide-out-left', 'slide-out-right');
@@ -230,25 +230,27 @@ function changeSlide(direction) {
         const inClass = direction > 0 ? 'slide-out-right' : 'slide-out-left';
         fullImg.classList.add(inClass);
 
-        // Slide back into center
-        setTimeout(() => {
-            fullImg.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-            fullImg.classList.remove('slide-out-left', 'slide-out-right');
-        }, 30);
+        fullImg.src = currentGallery[currentIndex];
 
+        fullImg.onload = () => {
+            setTimeout(() => {
+                fullImg.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+                fullImg.classList.remove('slide-out-left', 'slide-out-right');
+            }, 50);
+        };
     }, 250); 
 }
 
 function updateGalleryImage() {
     const fullImg = document.getElementById('fullImg');
     const counter = document.getElementById('galleryCounter');
+    
     fullImg.src = currentGallery[currentIndex];
     fullImg.style.display = 'block';
 
     counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
     counter.style.display = currentGallery.length > 1 ? 'block' : 'none';
 
-    // Hide other modal types (video/figma)
     document.getElementById('fullVideo').style.display = 'none';
     document.getElementById('figmaEmbed').style.display = 'none';
 }
