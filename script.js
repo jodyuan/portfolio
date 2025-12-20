@@ -10,7 +10,6 @@ ScrollReveal().reveal('.reveal', {
 ScrollReveal().reveal('.hero h1', { delay: 500, origin: 'top', distance: '30px' });
 ScrollReveal().reveal('.hero-img', { delay: 300, scale: 0.8 });
 
-// 1. Reveal for everything EXCEPT projects
 ScrollReveal().reveal('.reveal:not(#projects)', {
     delay: 200,
     distance: '50px',
@@ -20,7 +19,6 @@ ScrollReveal().reveal('.reveal:not(#projects)', {
     reset: true
 });
 
-// 2. Specific reveal for projects to trigger the arrow hint
 ScrollReveal().reveal('#projects', {
     delay: 200,
     distance: '50px',
@@ -82,7 +80,6 @@ function openModal(fileSrc) {
 
     document.body.classList.add('modal-open');
 
-    // RESET EVERYTHING: Hide all three types first
     fullImg.style.display = "none";
     fullVideo.style.display = "none";
     if (figmaEmbed) figmaEmbed.style.display = "none"; // Hide Figma when opening image/video
@@ -243,30 +240,29 @@ document.getElementById('imageModal').addEventListener('touchend', e => {
 
 function changeSlide(direction) {
     const fullImg = document.getElementById('fullImg');
+    const loader = document.getElementById("modalLoader");
     if (!fullImg) return;
 
-    const outClass = direction > 0 ? 'slide-out-left' : 'slide-out-right';
-    fullImg.classList.add(outClass);
+    fullImg.classList.add(direction > 0 ? 'slide-out-left' : 'slide-out-right');
 
     setTimeout(() => {
         currentIndex += direction;
         if (currentIndex >= currentGallery.length) currentIndex = 0;
         if (currentIndex < 0) currentIndex = currentGallery.length - 1;
 
-        const counter = document.getElementById('galleryCounter');
-        counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
-        document.getElementById('fullVideo').style.display = 'none';
-        document.getElementById('figmaEmbed').style.display = 'none';
+        loader.style.display = "block";
+        fullImg.classList.add('loading');
 
         fullImg.style.transition = 'none';
         fullImg.classList.remove('slide-out-left', 'slide-out-right');
-        
-        const inClass = direction > 0 ? 'slide-out-right' : 'slide-out-left';
-        fullImg.classList.add(inClass);
+        fullImg.classList.add(direction > 0 ? 'slide-out-right' : 'slide-out-left');
 
         fullImg.src = currentGallery[currentIndex];
 
         fullImg.onload = () => {
+            loader.style.display = "none"; 
+            fullImg.classList.remove('loading');
+            
             setTimeout(() => {
                 fullImg.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
                 fullImg.classList.remove('slide-out-left', 'slide-out-right');
