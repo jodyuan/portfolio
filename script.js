@@ -1,6 +1,6 @@
 ScrollReveal().reveal('.reveal', {
-    delay: 200,
-    distance: '50px',
+    delay: 300,
+    distance: '100px',
     origin: 'bottom',
     duration: 1000,
     interval: 200,
@@ -9,6 +9,40 @@ ScrollReveal().reveal('.reveal', {
 
 ScrollReveal().reveal('.hero h1', { delay: 500, origin: 'top', distance: '30px' });
 ScrollReveal().reveal('.hero-img', { delay: 300, scale: 0.8 });
+
+// 1. Reveal for everything EXCEPT projects
+ScrollReveal().reveal('.reveal:not(#projects)', {
+    delay: 200,
+    distance: '50px',
+    origin: 'bottom',
+    duration: 1000,
+    interval: 200,
+    reset: true
+});
+
+// 2. Specific reveal for projects to trigger the arrow hint
+ScrollReveal().reveal('#projects', {
+    delay: 200,
+    distance: '50px',
+    origin: 'bottom',
+    duration: 1000,
+    reset: true, 
+    afterReveal: (el) => {
+        const arrows = el.querySelectorAll('.arrow');
+        
+        arrows.forEach(arrow => {
+            arrow.classList.remove('hint-finished');
+            arrow.classList.add('hint-active');
+        });
+
+        setTimeout(() => {
+            arrows.forEach(arrow => {
+                arrow.classList.remove('hint-active');
+                arrow.classList.add('hint-finished');
+            });
+        }, 4000);
+    }
+});
 
 const toggleBtn = document.getElementById('dark-mode-toggle');
 const body = document.body;
