@@ -10,6 +10,27 @@ ScrollReveal().reveal('.reveal', {
 ScrollReveal().reveal('.hero h1', { delay: 500, origin: 'top', distance: '30px' });
 ScrollReveal().reveal('.hero-img', { delay: 300, scale: 0.8 });
 
+const toggleBtn = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+// Check for saved preference
+if (localStorage.getItem('dark-mode') === 'enabled') {
+    body.classList.add('dark-mode');
+    toggleBtn.innerText = '☀'; // Show sun if dark is enabled
+}
+
+toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+        toggleBtn.innerText = '☀';
+    } else {
+        localStorage.setItem('dark-mode', 'disabled');
+        toggleBtn.innerText = '☾';
+    }
+});
+
 const isMobile = () => window.innerWidth <= 600;
 
 function openModal(fileSrc) {
