@@ -48,7 +48,6 @@ const body = document.body;
 // Check for saved preference
 if (localStorage.getItem('dark-mode') === 'enabled') {
     body.classList.add('dark-mode');
-    toggleBtn.innerText = '☀'; // Show sun if dark is enabled
 }
 
 toggleBtn.addEventListener('click', () => {
@@ -56,10 +55,8 @@ toggleBtn.addEventListener('click', () => {
     
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('dark-mode', 'enabled');
-        toggleBtn.innerText = '☀';
     } else {
         localStorage.setItem('dark-mode', 'disabled');
-        toggleBtn.innerText = '☾';
     }
 });
 
@@ -318,3 +315,4 @@ document.getElementById('modalOverlay').addEventListener('click', function () {
         closeModal();
     }
 });
+
