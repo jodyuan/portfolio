@@ -69,6 +69,10 @@ function openModal(fileSrc) {
         return;
     }
 
+    currentGallery = []; 
+    currentIndex = 0;
+    document.getElementById('galleryCounter').style.display = 'none';
+
     const modal = document.getElementById("imageModal");
     const fullImg = document.getElementById("fullImg");
     const fullVideo = document.getElementById("fullVideo");
@@ -237,6 +241,7 @@ document.getElementById('imageModal').addEventListener('touchend', e => {
 
 function changeSlide(direction) {
     const fullImg = document.getElementById('fullImg');
+    const counter = document.getElementById('galleryCounter');
     const loader = document.getElementById("modalLoader");
     if (!fullImg) return;
 
@@ -246,6 +251,11 @@ function changeSlide(direction) {
         currentIndex += direction;
         if (currentIndex >= currentGallery.length) currentIndex = 0;
         if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+
+        if (currentGallery.length > 1) {
+            counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
+            counter.style.display = 'block';
+        }
 
         loader.style.display = "block";
         fullImg.classList.add('loading');
@@ -275,8 +285,12 @@ function updateGalleryImage() {
     fullImg.src = currentGallery[currentIndex];
     fullImg.style.display = 'block';
 
-    counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
-    counter.style.display = currentGallery.length > 1 ? 'block' : 'none';
+    if (currentGallery.length > 1) {
+        counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
+        counter.style.display = 'block';
+    } else {
+        counter.style.display = 'none';
+    }
 
     document.getElementById('fullVideo').style.display = 'none';
     document.getElementById('figmaEmbed').style.display = 'none';

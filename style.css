@@ -114,7 +114,7 @@ body.dark-mode #dark-mode-toggle {
 
  /* --- Hero Section --- */
  .hero {
-   height: 90vh;
+   height: 100vh;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -124,8 +124,8 @@ body.dark-mode #dark-mode-toggle {
  }
 
 .hero-img {
-    width: 200px; 
-    height: 200px;
+    width: 170px; 
+    height:170px;
     background: var(--main-pink);
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 70%;
     display: flex;
@@ -618,7 +618,8 @@ body.dark-mode #dark-mode-toggle {
    padding: 5px 15px;
    border-radius: 20px;
    font-size: 0.9rem;
-   z-index: 3005;
+   z-index: 5005 !important;
+   display: none;
  }
 
  .close-btn {
@@ -732,6 +733,21 @@ body.dark-mode .hero-emoji:hover {
  body.dark-mode .hero h1 {
    color: var(--accent-pink);
  }
+
+@media (max-width: 1024px) {
+    .hero {
+      margin-top: 3rem;
+    }
+    .image-box::after {
+        content: "Tap to Zoom" !important;
+    }
+
+    .modal::before {
+        content: "Tap outside to close" !important;
+        font-size: 0.8rem;
+        padding: 8px 12px;
+    }
+}
 
  @media (max-width: 600px) {
    .scroll-container {
