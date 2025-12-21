@@ -87,7 +87,7 @@ function openModal(fileSrc) {
 
     if (fileSrc.endsWith('.mp4')) {
         fullVideo.style.display = "block";
-        videoSource.src = fileSrc;
+        fullVideo.src = fileSrc;
         fullVideo.load();
         fullVideo.play();
     } else {
@@ -133,7 +133,7 @@ function closeModal() {
         modal.style.display = "none";
 
         // Clear sources so the browser releases the memory
-        if (videoSource) videoSource.src = "";
+        if (fullVideo) fullVideo.src = "";
         if (fullVideo) fullVideo.load();
         if (figmaEmbed) figmaEmbed.src = "";
         if (closeBtn) closeBtn.style.display = '';
